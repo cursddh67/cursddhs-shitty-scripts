@@ -1,4 +1,4 @@
-﻿-- im not a skid, have fun
+-- im not a skid, have fun
 --wgui
 
 print("cloneref:", cloneref)
