@@ -527,16 +527,12 @@ local function desgui()
         desyncEnabled = true
 
         startDesync()
-
-        ds.Text = "Desync ON"
     end)
     sync.MouseButton1Click:Connect(function()
 
         desyncEnabled = false
 
         stopDesync()
-
-        s.Text = "Synced"
     end)
     player.CharacterAdded:Connect(function()
 
