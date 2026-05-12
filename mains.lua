@@ -1,5 +1,10 @@
 ﻿-- im not a skid, have fun
 --wgui
+
+print("cloneref:", cloneref)
+print("gethui:", gethui)
+print("getcustomasset:", getcustomasset)
+
 local Players = cloneref(game:GetService("Players"))
 local UIS = game:GetService("UserInputService")
 local player = Players.LocalPlayer
