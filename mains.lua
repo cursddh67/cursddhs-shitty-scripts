@@ -445,10 +445,6 @@ local function invgui()
     XaddHover(kinframe)
     OaddHover(invisiblegui)
 
-    invisible.MouseButton1Click:Connect(invisibleChar)
-    visible.MouseButton1Click:Connect(visibleChar)
-
-
 end
 invisible.MouseButton1Click:Connect(function()
     if gethui():FindFirstChild("IGUI") then
