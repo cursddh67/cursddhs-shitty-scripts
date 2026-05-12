@@ -529,7 +529,7 @@ local function desgui()
         end
     end)
 end
-Desync.MouseButton1Click:Connect(function()
+DesyncT.MouseButton1Click:Connect(function()
     if gethui():FindFirstChild("IGUI") then
         return
     end
