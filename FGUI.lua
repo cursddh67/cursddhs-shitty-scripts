@@ -123,13 +123,13 @@ noclip.BackgroundColor3 = Color3.fromRGB(59, 130, 246)
 noclip.Text = "Noclip"
 noclip.Parent = MFrame
 
-local Desync = Instance.new("TextButton")
-Desync.Name = "Desync"
-Desync.Size = UDim2.new(0, 150, 0, 40)
-Desync.Position = UDim2.new(0, 379, 0, 64)
-Desync.BackgroundColor3 = Color3.fromRGB(59, 130, 246)
-Desync.Text = "Desync"
-Desync.Parent = MFrame
+local DesyncT = Instance.new("TextButton")
+DesyncT.Name = "Desync"
+DesyncT.Size = UDim2.new(0, 150, 0, 40)
+DesyncT.Position = UDim2.new(0, 379, 0, 64)
+DesyncT.BackgroundColor3 = Color3.fromRGB(59, 130, 246)
+DesyncT.Text = "Desync"
+DesyncT.Parent = MFrame
 
 -- min and max (yip and yap hehehe)
 local minimizar = min
@@ -471,10 +471,10 @@ local function desgui()
 
 
     makeDraggable(inframe)
-    killgui(kinframe, invisiblegui)
+    killgui(kinframe, Desyncgui)
     XaddHover(kinframe)
-    OaddHover(visible)
-    OaddHover(invisible)
+    OaddHover(sync)
+    OaddHover(Desync)
     killgui(kil, daframe)
 
     local Players = game:GetService("Players")
@@ -484,22 +484,17 @@ local function desgui()
     local renderConnection
     local desyncEnabled = false
     local function stopDesync()
-
         if heartbeatConnection then
             heartbeatConnection:Disconnect()
             heartbeatConnection = nil
         end
-
         if renderConnection then
             renderConnection:Disconnect()
             renderConnection = nil
         end
-
         local char = player.Character
-
         if char then
             local root = char:FindFirstChild("HumanoidRootPart")
-
             if root then
                 root.Anchored = false
             end
@@ -507,12 +502,9 @@ local function desgui()
     end
 
     local function startDesync()
-
         local char = player.Character or player.CharacterAdded:Wait()
         local root = char:WaitForChild("HumanoidRootPart")
-
         stopDesync()
-
         heartbeatConnection = RunService.Heartbeat:Connect(function()
             root.Anchored = true
         end)
@@ -520,12 +512,9 @@ local function desgui()
         renderConnection = RunService.RenderStepped:Connect(function()
             root.Anchored = false
         end)
-
     end
     Desync.MouseButton1Click:Connect(function()
-
         desyncEnabled = true
-
         startDesync()
     end)
     sync.MouseButton1Click:Connect(function()
@@ -535,17 +524,15 @@ local function desgui()
         stopDesync()
     end)
     player.CharacterAdded:Connect(function()
-
         if desyncEnabled then
             task.wait(1)
             startDesync()
         end
-
     end)
 end
-invisible.MouseButton1Click:Connect(function()
+Desync.MouseButton1Click:Connect(function()
     if gethui():FindFirstChild("IGUI") then
-    	return
+        return
     end
-    invgui()
+    desgui()
 end)
