@@ -1,3 +1,4 @@
+-- version 0.6
 -- im not a skid, have fun
 --wgui
 local cloneref = cloneref or getgenv().cloneref
