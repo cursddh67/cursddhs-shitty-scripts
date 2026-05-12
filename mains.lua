@@ -443,7 +443,8 @@ local function invgui()
     makeDraggable(inframe)
     killgui(kinframe, invisiblegui)
     XaddHover(kinframe)
-    OaddHover(invisiblegui)
+    OaddHover(invisible)
+	OaddHover(visible)
 
 end
 invisible.MouseButton1Click:Connect(function()
