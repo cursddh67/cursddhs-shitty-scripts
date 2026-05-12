@@ -1,10 +1,6 @@
 -- im not a skid, have fun
 --wgui
-
-print("cloneref:", cloneref)
-print("gethui:", gethui)
-print("getcustomasset:", getcustomasset)
-
+local cloneref = cloneref or getgenv().cloneref
 local Players = cloneref(game:GetService("Players"))
 local UIS = game:GetService("UserInputService")
 local player = Players.LocalPlayer
