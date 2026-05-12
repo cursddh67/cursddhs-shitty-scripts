@@ -123,13 +123,13 @@ noclip.BackgroundColor3 = Color3.fromRGB(59, 130, 246)
 noclip.Text = "Noclip"
 noclip.Parent = MFrame
 
-local invisible = Instance.new("TextButton")
-invisible.Name = "invisible"
-invisible.Size = UDim2.new(0, 150, 0, 40)
-invisible.Position = UDim2.new(0, 379, 0, 64)
-invisible.BackgroundColor3 = Color3.fromRGB(59, 130, 246)
-invisible.Text = "Invisible (Local)"
-invisible.Parent = MFrame
+local Desync = Instance.new("TextButton")
+Desync.Name = "Desync"
+Desync.Size = UDim2.new(0, 150, 0, 40)
+Desync.Position = UDim2.new(0, 379, 0, 64)
+Desync.BackgroundColor3 = Color3.fromRGB(59, 130, 246)
+Desync.Text = "Desync"
+Desync.Parent = MFrame
 
 -- min and max (yip and yap hehehe)
 local minimizar = min
@@ -396,33 +396,33 @@ noclip.MouseButton1Click:Connect(function()
 end)
 
 --invisible shit
-local function invgui() 
-    local invisiblegui = Instance.new("ScreenGui")
-    invisiblegui.Parent = hui
-    invisiblegui.Name = "IGUI"
+local function desgui() 
+    local Desyncgui = Instance.new("ScreenGui")
+    Desyncgui.Parent = hui
+    Desyncgui.Name = "IGUI"
     
     local inframe = Instance.new("Frame")
     inframe.Name = "inframe"
     inframe.Size = UDim2.new(0, 201, 0, 141)
     inframe.Position = UDim2.new(0, 0, 0, 0)
     inframe.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    inframe.Parent = invisiblegui
+    inframe.Parent = Desyncgui
 
-    local visible = Instance.new("TextButton")
-    visible.Name = "visible"
-    visible.Size = UDim2.new(0, 201, 0, 56)
-    visible.Position = UDim2.new(0, 0, 0, 85)
-    visible.BackgroundColor3 = Color3.fromRGB(225, 225, 225)
-    visible.Text = "Visible"
-    visible.Parent = inframe
+    local sync = Instance.new("TextButton")
+    sync.Name = "sync"
+    sync.Size = UDim2.new(0, 201, 0, 56)
+    sync.Position = UDim2.new(0, 0, 0, 85)
+    sync.BackgroundColor3 = Color3.fromRGB(225, 225, 225)
+    sync.Text = "Sync"
+    sync.Parent = inframe
 
-    local invisible = Instance.new("TextButton")
-    invisible.Name = "invisible"
-    invisible.Size = UDim2.new(0, 201, 0, 55)
-    invisible.Position = UDim2.new(0, 0, 0, 31)
-    invisible.BackgroundColor3 = Color3.fromRGB(225, 225, 225)
-    invisible.Text = "Invisible"
-    invisible.Parent = inframe
+    local Desync = Instance.new("TextButton")
+   	Desync.Name = "Desync"
+    Desync.Size = UDim2.new(0, 201, 0, 55)
+    Desync.Position = UDim2.new(0, 0, 0, 31)
+    Desync.BackgroundColor3 = Color3.fromRGB(225, 225, 225)
+    Desync.Text = "Desync"
+    Desync.Parent = inframe
 
     local kinframe = Instance.new("TextButton")
     kinframe.Name = "kinframe"
@@ -522,7 +522,7 @@ local function invgui()
         end)
 
     end
-    invisible.MouseButton1Click:Connect(function()
+    Desync.MouseButton1Click:Connect(function()
 
         desyncEnabled = true
 
@@ -530,7 +530,7 @@ local function invgui()
 
         ds.Text = "Desync ON"
     end)
-    visible.MouseButton1Click:Connect(function()
+    sync.MouseButton1Click:Connect(function()
 
         desyncEnabled = false
 
