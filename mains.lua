@@ -1,4 +1,4 @@
--- version 0.6
+-- version 0.67
 -- im not a skid, have fun
 --wgui
 local cloneref = cloneref or getgenv().cloneref
@@ -442,12 +442,110 @@ local function invgui()
     draginf.TextSize = 11
     draginf.Parent = inframe
 
+    local daframe = Instance.new("Frame")
+    daframe.Name = "daframe"
+    daframe.Size = UDim2.new(0, 100, 0, 100)
+    daframe.Position = UDim2.new(0, 584, 0, 0)
+    daframe.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    daframe.Parent = hui
+
+    local warndes = Instance.new("TextLabel")
+    warndes.Name = "warn des"
+    warndes.Size = UDim2.new(0, 200, 0, 101)
+    warndes.Position = UDim2.new(0, -50, 0, 0)
+    warndes.BackgroundColor3 = Color3.fromRGB(239, 68, 68)
+    warndes.BorderSizePixel = 0
+    warndes.Text = "WARNING! THIS IS A DESYNC, IT DOESNT ACTUALLY MAKE YOU INVISIBLE, SO FIND A WAY TO USE IT"
+    warndes.TextSize = 16
+    warndes.TextWrapped = true
+    warndes.RichText = true
+    warndes.Parent = daframe
+
+    local kil = Instance.new("TextButton")
+    kil.Name = "kil"
+    kil.Size = UDim2.new(0, 34, 0, 16)
+    kil.Position = UDim2.new(0, 116, 0, 84)
+    kil.BackgroundColor3 = Color3.fromRGB(59, 130, 246)
+    kil.Text = "x"
+    kil.Parent = daframe
+
+
     makeDraggable(inframe)
     killgui(kinframe, invisiblegui)
     XaddHover(kinframe)
+    OaddHover(visible)
     OaddHover(invisible)
-	OaddHover(visible)
+    killgui(kil, daframe)
 
+    local Players = game:GetService("Players")
+    local RunService = game:GetService("RunService")
+    local player = Players.LocalPlayer
+    local heartbeatConnection
+    local renderConnection
+    local desyncEnabled = false
+    local function stopDesync()
+
+        if heartbeatConnection then
+            heartbeatConnection:Disconnect()
+            heartbeatConnection = nil
+        end
+
+        if renderConnection then
+            renderConnection:Disconnect()
+            renderConnection = nil
+        end
+
+        local char = player.Character
+
+        if char then
+            local root = char:FindFirstChild("HumanoidRootPart")
+
+            if root then
+                root.Anchored = false
+            end
+        end
+    end
+
+    local function startDesync()
+
+        local char = player.Character or player.CharacterAdded:Wait()
+        local root = char:WaitForChild("HumanoidRootPart")
+
+        stopDesync()
+
+        heartbeatConnection = RunService.Heartbeat:Connect(function()
+            root.Anchored = true
+        end)
+
+        renderConnection = RunService.RenderStepped:Connect(function()
+            root.Anchored = false
+        end)
+
+    end
+    invisible.MouseButton1Click:Connect(function()
+
+        desyncEnabled = true
+
+        startDesync()
+
+        ds.Text = "Desync ON"
+    end)
+    visible.MouseButton1Click:Connect(function()
+
+        desyncEnabled = false
+
+        stopDesync()
+
+        s.Text = "Synced"
+    end)
+    player.CharacterAdded:Connect(function()
+
+        if desyncEnabled then
+            task.wait(1)
+            startDesync()
+        end
+
+    end)
 end
 invisible.MouseButton1Click:Connect(function()
     if gethui():FindFirstChild("IGUI") then
