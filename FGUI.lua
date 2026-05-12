@@ -1,5 +1,4 @@
--- version 0.69
--- im not a skid, have fun
+-- version_0.69
 --wgui
 local cloneref = cloneref or getgenv().cloneref
 local Players = cloneref(game:GetService("Players"))
