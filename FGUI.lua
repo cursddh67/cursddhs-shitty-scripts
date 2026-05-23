@@ -1,10 +1,14 @@
--- version_0.69
+-- version 0.69
+-- im not a skid, have fun
 --wgui
+if gethui():FindFirstChild("GUI") then
+    gethui().GUI:Destroy()
+end
+
 local cloneref = cloneref or getgenv().cloneref
-local Players = cloneref(game:GetService("Players"))
-local UIS = game:GetService("UserInputService")
+local Players, UIS = cloneref(game:GetService("Players")), cloneref(game:GetService("UserInputService"))
 local player = Players.LocalPlayer
-local hui = gethui() :: (BasePlayerGui | Folder)
+local hui = gethui()
 
 local wgui = Instance.new("ScreenGui")
 wgui.Parent = hui
@@ -23,19 +27,19 @@ WFrame_corner.Parent = WFrame
 
 --israel flag (might want to use later)
 
-writefile("ihl28v.png", game:HttpGet("https://files.catbox.moe/ihl28v.png"))
+writefile("ugfhfa.png", game:HttpGet("https://raw.githubusercontent.com/cursddh67/cursddhs-shitty-scripts/9652ae84e3b176b061c591d9f4e44df61fc32b4f/ugfhfa.png"))
 local Israflag = Instance.new("ImageLabel")
 Israflag.Name = "ImageLabel"
 Israflag.Size = UDim2.new(0, 300, 0, 170)
 Israflag.Position = UDim2.new(0, 60, 0, 30)
 Israflag.BackgroundColor3 = Color3.fromRGB(212, 212, 216)
-Israflag.Image = getcustomasset("ihl28v.png")
+Israflag.Image = getcustomasset("ugfhfa.png")
 Israflag.Parent = WFrame
 
 local Wname = Instance.new("TextLabel")
 Wname.Name = "TextLabel"
 Wname.Size = UDim2.new(0, 369, 0, 188)
-Wname.Position = UDim2.new(0, 60, 0, 30)
+Wname.Position = UDim2.new(0, 30, 0, 25)
 Wname.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Wname.BackgroundTransparency = 1
 Wname.Text = "Made by moxlvn (￣﹃￣)"
@@ -64,13 +68,13 @@ MFrame.Position = UDim2.new(0, 123, 0, 94)
 MFrame.BackgroundColor3 = Color3.fromRGB(3, 59, 73)
 MFrame.Parent = mgui
 
-writefile("s8ejxp.jfif", game:HttpGet("https://files.catbox.moe/s8ejxp.jfif"))
+writefile("israfloyd.jfif", game:HttpGet("https://raw.githubusercontent.com/cursddh67/cursddhs-shitty-scripts/refs/heads/main/israfloyd.jfif"))
 local jorgito = Instance.new("ImageLabel")
 jorgito.Name = "ImageLabel"
 jorgito.Size = UDim2.new(0, 532, 0, 271)
 jorgito.Position = UDim2.new(0, 10, 0, 10)
 jorgito.BackgroundColor3 = Color3.fromRGB(212, 212, 216)
-jorgito.Image = getcustomasset("s8ejxp.jfif")
+jorgito.Image = getcustomasset("israfloyd.jfif")
 jorgito.Parent = MFrame
 
 local title = Instance.new("TextLabel")
@@ -106,29 +110,23 @@ min.BackgroundColor3 = Color3.fromRGB(145, 141, 141)
 min.Text = "-"
 min.Parent = MFrame
 
-local speed = Instance.new("TextButton")
-speed.Name = "speed"
-speed.Size = UDim2.new(0, 150, 0, 40)
-speed.Position = UDim2.new(0, 23, 0, 64)
-speed.BackgroundColor3 = Color3.fromRGB(59, 130, 246)
-speed.Text = "Speed"
-speed.Parent = MFrame
+local function createbutton(parent, text, posx, posy, color)
+    local button = Instance.new("TextButton")
+    button.Name = text
+    button.Size = UDim2.new(0, 150, 0, 40)
+    button.Position = UDim2.new(0, posx, 0, posy)
+    button.BackgroundColor3 = color or Color3.fromRGB(59, 130, 246)
+    button.Text = text
+    button.Parent = parent
 
-local noclip = Instance.new("TextButton")
-noclip.Name = "noclip"
-noclip.Size = UDim2.new(0, 150, 0, 40)
-noclip.Position = UDim2.new(0, 201, 0, 64)
-noclip.BackgroundColor3 = Color3.fromRGB(59, 130, 246)
-noclip.Text = "Noclip"
-noclip.Parent = MFrame
+    return button
+end
 
-local DesyncT = Instance.new("TextButton")
-DesyncT.Name = "Desync"
-DesyncT.Size = UDim2.new(0, 150, 0, 40)
-DesyncT.Position = UDim2.new(0, 379, 0, 64)
-DesyncT.BackgroundColor3 = Color3.fromRGB(59, 130, 246)
-DesyncT.Text = "Desync"
-DesyncT.Parent = MFrame
+local speed = createbutton(MFrame, "Speed", 23, 64)
+local noclip = createbutton(MFrame, "Noclip", 201, 64)
+local desync = createbutton(MFrame, "Desync", 379, 64)
+local fly = createbutton(MFrame, "Fly", 23, 120)
+
 
 -- min and max (yip and yap hehehe)
 local minimizar = min
@@ -178,7 +176,6 @@ local function OaddHover(button)
     end)
     
 end
-
 local function XaddHover(button)
 	button.MouseEnter:Connect(function()
         button.BackgroundColor3 = Color3.fromRGB(240, 240, 240) 
@@ -188,7 +185,6 @@ local function XaddHover(button)
         button.BackgroundColor3 = Color3.fromRGB(239, 68, 68)
     end)
 end
-
 local function killgui(button, gui)
 	button.MouseButton1Click:Connect(function()
 		gui:Destroy()
@@ -196,7 +192,6 @@ local function killgui(button, gui)
 
 
 end
-
 local function makeDraggable(frame)
     local dragging = false
     local offset = Vector2.new()
@@ -246,7 +241,7 @@ local function csgui()
 	local sFrame = Instance.new("Frame")
     sFrame.Name = "sFrame"
     sFrame.Size = UDim2.new(0, 173, 0, 98)
-    sFrame.Position = UDim2.new(0, 252, 0, 491)
+    sFrame.Position = UDim2.new(0, 0, 0, 0)
     sFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     sFrame.Parent = speedgui
 
@@ -312,15 +307,15 @@ end)
 
 --noclip shit
 local function ncgui()
-   
+
     local noclipgui = Instance.new("ScreenGui")
     noclipgui.Parent = hui
     noclipgui.Name = "NCGUI"
-    
+
     local nframe = Instance.new("Frame")
     nframe.Name = "nframe"
     nframe.Size = UDim2.new(0, 187, 0, 100)
-    nframe.Position = UDim2.new(0, 0, 0, 0)
+    nframe.Position = UDim2.new(0, 0, 0, 400)
     nframe.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     nframe.Parent = noclipgui
 
@@ -333,22 +328,14 @@ local function ncgui()
     drag.Text = "drag me from here twin"
     drag.TextSize = 7
     drag.Parent = nframe
-    
-    local yesclip = Instance.new("TextButton")
-    yesclip.Name = "yesclip"
-    yesclip.Size = UDim2.new(0, 187, 0, 40)
-    yesclip.Position = UDim2.new(0, 0, 0, 60)
-    yesclip.BackgroundColor3 = Color3.fromRGB(145, 141, 141)
-    yesclip.Text = "yesclip"
-    yesclip.Parent = nframe
 
-    local noclip = Instance.new("TextButton")
-    noclip.Name = "noclip"
-    noclip.Size = UDim2.new(0, 187, 0, 40)
-    noclip.Position = UDim2.new(0, 0, 0, 20)
-    noclip.BackgroundColor3 = Color3.fromRGB(145, 141, 141)
-    noclip.Text = "noclip"
-    noclip.Parent = nframe
+    local noclipb = Instance.new("TextButton")
+    noclipb.Name = "noclipb"
+    noclipb.Size = UDim2.new(0, 187, 0, 80)
+    noclipb.Position = UDim2.new(0, 0, 0, 20)
+    noclipb.BackgroundColor3 = Color3.fromRGB(239, 68, 68)
+    noclipb.Text = "Noclip: OFF"
+    noclipb.Parent = nframe
 
     local dngui = Instance.new("TextButton")
     dngui.Name = "dngui"
@@ -362,31 +349,42 @@ local function ncgui()
     killgui(dngui, noclipgui)
     XaddHover(dngui)
 
-    local function enableNoclip()
-        local char = player.Character or player.CharacterAdded:Wait()
-        for _, part in pairs(char:GetDescendants()) do
-            if part:IsA("BasePart") then
-                part.CanCollide = false
+    local RunService = game:GetService("RunService")
+    local noclipEnabled = false
+    local noclipConnection
+    noclipb.MouseButton1Click:Connect(function()
+        noclipEnabled = not noclipEnabled
+        if noclipEnabled then
+            noclipb.Text = "Noclip: On"
+            noclipb.BackgroundColor3 = Color3.fromRGB(16, 185, 129)
+            noclipConnection = RunService.Stepped:Connect(function()
+                local char = player.Character
+                if char then
+                    for _, part in pairs(char:GetDescendants()) do
+                        if part:IsA("BasePart") then
+                            part.CanCollide = false
+                        end
+                    end
+                end
+            end)
+        else
+            noclipb.Text = "Noclip: OFF"
+            noclipb.BackgroundColor3 = Color3.fromRGB(239, 68, 68)
+            if noclipConnection then
+                noclipConnection:Disconnect()
+                noclipConnection = nil
+            end
+            local char = player.Character
+            if char then
+                for _, part in pairs(char:GetDescendants()) do
+                    if part:IsA("BasePart") then
+                        part.CanCollide = true
+                    end
+                end
             end
         end
-    end
-
-    local function disableNoclip()
-        local char = player.Character or player.CharacterAdded:Wait()
-        for _, part in pairs(char:GetDescendants()) do
-            if part:IsA("BasePart") then
-                part.CanCollide = true
-            end
-        end
-    end
-
-    noclip.MouseButton1Click:Connect(enableNoclip)
-    yesclip.MouseButton1Click:Connect(disableNoclip)
-    
-    OaddHover(yesclip)
-    OaddHover(noclip)
-        
-end
+    end)
+end 
 noclip.MouseButton1Click:Connect(function()
     if gethui():FindFirstChild("NCGUI") then
     	return
@@ -394,7 +392,8 @@ noclip.MouseButton1Click:Connect(function()
     ncgui()
 end)
 
---invisible shit
+
+--desync shit
 local function desgui() 
     local Desyncgui = Instance.new("ScreenGui")
     Desyncgui.Parent = hui
@@ -403,7 +402,7 @@ local function desgui()
     local inframe = Instance.new("Frame")
     inframe.Name = "inframe"
     inframe.Size = UDim2.new(0, 201, 0, 141)
-    inframe.Position = UDim2.new(0, 0, 0, 0)
+    inframe.Position = UDim2.new(0, 0, 0, 200)
     inframe.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     inframe.Parent = Desyncgui
 
@@ -483,17 +482,22 @@ local function desgui()
     local renderConnection
     local desyncEnabled = false
     local function stopDesync()
+
         if heartbeatConnection then
             heartbeatConnection:Disconnect()
             heartbeatConnection = nil
         end
+
         if renderConnection then
             renderConnection:Disconnect()
             renderConnection = nil
         end
+
         local char = player.Character
+
         if char then
             local root = char:FindFirstChild("HumanoidRootPart")
+
             if root then
                 root.Anchored = false
             end
@@ -501,13 +505,13 @@ local function desgui()
     end
 
     local function startDesync()
+
         local char = player.Character or player.CharacterAdded:Wait()
         local root = char:WaitForChild("HumanoidRootPart")
         stopDesync()
         heartbeatConnection = RunService.Heartbeat:Connect(function()
             root.Anchored = true
         end)
-
         renderConnection = RunService.RenderStepped:Connect(function()
             root.Anchored = false
         end)
@@ -517,9 +521,7 @@ local function desgui()
         startDesync()
     end)
     sync.MouseButton1Click:Connect(function()
-
         desyncEnabled = false
-
         stopDesync()
     end)
     player.CharacterAdded:Connect(function()
@@ -529,9 +531,237 @@ local function desgui()
         end
     end)
 end
-DesyncT.MouseButton1Click:Connect(function()
+desync.MouseButton1Click:Connect(function()
     if gethui():FindFirstChild("IGUI") then
         return
     end
     desgui()
+end)
+
+--fly shit
+local function flygui()
+    local flFrame = Instance.new("Frame")
+    flFrame.Name = "flFrame"
+    flFrame.Size = UDim2.new(0, 198, 0, 232)
+    flFrame.Position = UDim2.new(0, 1000, 0, 44)
+    flFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    flFrame.Parent = hui
+
+    local dragaguiga = Instance.new("TextLabel")
+    dragaguiga.Name = "dragaguiga"
+    dragaguiga.Size = UDim2.new(0, 91, 0, 15)
+    dragaguiga.Position = UDim2.new(0, 0, 0, 0)
+    dragaguiga.BackgroundColor3 = Color3.fromRGB(245, 158, 11)
+    dragaguiga.BorderSizePixel = 0
+    dragaguiga.Text = "Drag me from here twin"
+    dragaguiga.TextSize = 8
+    dragaguiga.Parent = flFrame
+
+    local mini = Instance.new("TextButton")
+    mini.Name = "mini"
+    mini.Size = UDim2.new(0, 41, 0, 16)
+    mini.Position = UDim2.new(0, 91, 0, -1)
+    mini.BackgroundColor3 = Color3.fromRGB(225, 225, 225)
+    mini.Text = "-"
+    mini.Parent = flFrame
+
+    local maxi = Instance.new("TextButton")
+    maxi.Name = "maxi"
+    maxi.Size = UDim2.new(0, 41, 0, 16)
+    maxi.Position = UDim2.new(0, 132, 0, -1)
+    maxi.BackgroundColor3 = Color3.fromRGB(225, 225, 225)
+    maxi.Text = "+"
+    maxi.Parent = flFrame
+
+    local kfifr = Instance.new("TextButton")
+    kfifr.Name = "kfifr"
+    kfifr.Size = UDim2.new(0, 25, 0, 16)
+    kfifr.Position = UDim2.new(0, 173, 0, -1)
+    kfifr.BackgroundColor3 = Color3.fromRGB(239, 68, 68)
+    kfifr.Text = "X"
+    kfifr.Parent = flFrame
+
+    local FB = Instance.new("TextButton")
+    FB.Name = "FB"
+    FB.Size = UDim2.new(0, 198, 0, 66)
+    FB.Position = UDim2.new(0, 0, 0, 15)
+    FB.BackgroundColor3 = Color3.fromRGB(239, 68, 68)
+    FB.Text = "Fly: Off"
+    FB.Parent = flFrame
+
+    local NB = Instance.new("TextButton")
+    NB.Name = "NB"
+    NB.Size = UDim2.new(0, 198, 0, 66)
+    NB.Position = UDim2.new(0, 0, 0, 81)
+    NB.BackgroundColor3 = Color3.fromRGB(239, 68, 68)
+    NB.Text = "Noclip: Off"
+    NB.Parent = flFrame
+
+    local lesped = Instance.new("TextButton")
+    lesped.Name = "lesped"
+    lesped.Size = UDim2.new(0, 30, 0, 85)
+    lesped.Position = UDim2.new(0, 0, 0, 147)
+    lesped.BackgroundColor3 = Color3.fromRGB(225, 225, 225)
+    lesped.Text = "-"
+    lesped.TextSize = 30
+    lesped.Parent = flFrame
+
+    local morsped = Instance.new("TextButton")
+    morsped.Name = "morsped"
+    morsped.Size = UDim2.new(0, 30, 0, 85)
+    morsped.Position = UDim2.new(0, 168, 0, 147)
+    morsped.BackgroundColor3 = Color3.fromRGB(225, 225, 225)
+    morsped.Text = "+"
+    morsped.TextSize = 30
+    morsped.Parent = flFrame
+
+    local spedem = Instance.new("TextBox")
+    spedem.Name = "spedem"
+    spedem.Size = UDim2.new(0, 138, 0, 66)
+    spedem.Position = UDim2.new(0, 30, 0, 166)
+    spedem.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    spedem.Text = ""
+    spedem.PlaceholderText = "CLICK ME"
+    spedem.Parent = flFrame
+
+    local spedtitle = Instance.new("TextButton")
+    spedtitle.Name = "spedtitle"
+    spedtitle.Size = UDim2.new(0, 138, 0, 19)
+    spedtitle.Position = UDim2.new(0, 30, 0, 147)
+    spedtitle.BackgroundColor3 = Color3.fromRGB(59, 130, 246)
+    spedtitle.BorderSizePixel = 0
+    spedtitle.Text = "Set Speed"
+    spedtitle.Parent = flFrame
+
+    makeDraggable(flFrame)
+    killgui(kfifr, flFrame)
+    XaddHover(kfifr)
+
+    for _, button in pairs({mini, maxi, lesped, morsped}) do
+        OaddHover(button)
+    end
+
+    local minimizedsizediseble = UDim2.new(0, 198, 0, 15)
+    local maximizese = UDim2.new(0, 198, 0, 232)
+    local minimized = false
+    local minsizebutton = mini
+    local maxsizebutton = maxi
+
+    local exceptions = {
+        [dragaguiga] = true,
+        [mini] = true,
+        [maxi] = true,
+        [kfifr] = true
+    }
+
+    minsizebutton.MouseButton1Click:Connect(function()
+        if not minimized then
+            flFrame.Size = minimizedsizediseble
+            for _, obj in pairs(flFrame:GetDescendants()) do
+                if obj:IsA("GuiObject") and not exceptions[obj] then
+                    obj.Visible = false
+                end
+            end
+            minimized = true
+        end
+    end)
+
+    maxsizebutton.MouseButton1Click:Connect(function()
+    if minimized then
+        flFrame.Size = maximizese
+        for _, obj in pairs(flFrame:GetDescendants()) do
+            if obj:IsA("GuiObject") then
+                obj.Visible = true
+            end
+        end
+        minimized = false
+    end
+    end)
+    
+    local flying = false
+
+    FB.MouseButton1Click:Connect(function()
+            flying = not flying
+            if flying then
+                FB.Text = "Fly ON"
+                FB.BackgroundColor3 = Color3.fromRGB(16, 185, 129)
+            else
+                FB.Text = "Fly OFF"
+                FB.BackgroundColor3 = Color3.fromRGB(239, 68, 68)
+            end
+    end)
+
+    local RunService = game:GetService("RunService")
+    local noclipEnabled = false
+    local noclipConnection
+
+    NB.MouseButton1Click:Connect(function()
+        noclipEnabled = not noclipEnabled
+        if noclipEnabled then
+            NB.Text = "Noclip: ON"
+            NB.BackgroundColor3 = Color3.fromRGB(16, 185, 129)
+            noclipConnection = RunService.Stepped:Connect(function()
+                local char = player.Character
+                if char then
+                    for _, part in pairs(char:GetDescendants()) do
+                        if part:IsA("BasePart") then
+                            part.CanCollide = false
+                        end
+                    end
+                end
+            end)
+
+        else
+            NB.Text = "Noclip: OFF"
+            NB.BackgroundColor3 = Color3.fromRGB(239, 68, 68)
+            if noclipConnection then
+                noclipConnection:Disconnect()
+                noclipConnection = nil
+            end
+            local char = player.Character
+            if char then
+                for _, part in pairs(char:GetDescendants()) do
+                    if part:IsA("BasePart") then
+                        part.CanCollide = true
+                    end
+                end
+            end
+        end
+    end)
+    local char = player.Character or player.CharacterAdded:Wait()
+    local humanoid = char:WaitForChild("Humanoid")
+
+    spedtitle.MouseButton1Click:Connect(function()
+            local speed = tonumber(spedem.Text)
+        if speed then
+            humanoid.WalkSpeed = speed
+            spedem.Text = speed
+        else
+            spedem.Text = "put a number dude"
+        end
+    end)
+
+    morsped.MouseButton1Click:Connect(function()    
+        local char = player.Character
+        if not char then return end
+        local humanoid = char:FindFirstChild("Humanoid")
+        if not humanoid then return end
+        humanoid.WalkSpeed += 1
+        spedem.Text = humanoid.WalkSpeed
+    end)
+
+    lesped.MouseButton1Click:Connect(function()
+        local char = player.Character
+        if not char then return end
+        local humanoid = char:FindFirstChild("Humanoid")
+        if not humanoid then return end
+        humanoid.WalkSpeed -= 1
+        spedem.Text = humanoid.WalkSpeed
+    end)
+end
+fly.MouseButton1Click:Connect(function()
+    if gethui():FindFirstChild("FLGUI") then
+        return
+    end
+    flygui()
 end)
