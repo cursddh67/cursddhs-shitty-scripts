@@ -1,1 +1,2 @@
-THIS GUI IS IN DEVELOPMENT! SO DONT TELL ME OOOOOOO THATS WRONG, IF YOU WANT TO KNOW ANYTHING DM ME, ELSE F@CK YOU
+hi this repo is full of bs so uh, use at your own risk
+dm me for any issues
