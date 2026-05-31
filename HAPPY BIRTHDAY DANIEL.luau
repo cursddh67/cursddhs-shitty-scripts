@@ -9,6 +9,7 @@ local Tservice = cloneref(game:GetService("TweenService"))
 local Sservice = cloneref(game:GetService("SoundService"))
 local checkpoint
 local deaths = 0
+local dead = false
 --volume
 local SavedVolumes = {}
 local function MuteAll()
@@ -121,18 +122,25 @@ local function SetupCharacter(char)
 
     local humanoid = char:WaitForChild("Humanoid")
 
-    humanoid.Died:Connect(function()
+    dead = false
 
-        deaths += 1
+    humanoid.HealthChanged:Connect(function(health)
 
-        MuteAll()
+        if health <= 0 and not dead then
 
-        deathTween:Cancel()
+            dead = true
+            deaths += 1
 
-        dframe.Visible = true
-        dframe.BackgroundTransparency = 1
+            MuteAll()
 
-        deathTween:Play()
+            deathTween:Cancel()
+
+            dframe.Visible = true
+            dframe.BackgroundTransparency = 1
+
+            deathTween:Play()
+
+        end
 
     end)
 
@@ -155,30 +163,35 @@ SetupCharacter(player.Character or player.CharacterAdded:Wait())
 
 player.CharacterAdded:Connect(function(char)
 
+    dead = false
+    
     SetupCharacter(char)
 
     if checkpoint then
 
         local hrp = char:WaitForChild("HumanoidRootPart")
 
-        task.wait(0.1)
+        task.wait(0.2)
 
+        bfdaudio:Stop()
+        bfdaudio:Play()
         hrp.CFrame = checkpoint
 
         task.wait(1.9)
 
         RestoreAll()
 
-        bfdaudio:Stop()
-        bfdaudio:Play()
-
         print(deaths)
 
         if deaths >= 10 then
-            UEUaudio:Stop()
-            task.wait(0.9)
-            UEUaudio:Play()
+            task.spawn(function()
+                UEUaudio:Stop()
+                task.wait(0.9)
+                UEUaudio:Play()
+            end)
+
             deaths = 0
+
         end
 
         dframe.Visible = false
