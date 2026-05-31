@@ -50,7 +50,7 @@ bfdaudio.Volume = 3
 bfdaudio.Parent = Sservice
 
 UEUaudio.SoundId = getcustomasset("UEU.mp3")
-UEUaudio.Volume = 5
+UEUaudio.Volume = 10
 UEUaudio.Parent = Sservice
 
 bfdaudio.Loaded:Wait()
@@ -185,6 +185,7 @@ player.CharacterAdded:Connect(function(char)
 
         if deaths >= 10 then
             task.spawn(function()
+                bfdaudio.Volume = 10
                 UEUaudio:Stop()
                 task.wait(0.9)
                 UEUaudio:Play()
@@ -204,6 +205,7 @@ player.CharacterAdded:Connect(function(char)
 
         flashTween:Play()
 
+        bfdaudio.Volume = 3
     end
 
 end)
