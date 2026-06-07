@@ -1,4 +1,5 @@
 --stuffy
+local cloneref = cloneref or getgenv().cloneref
 local players = cloneref(game:GetService("Players"))
 local Player = players.LocalPlayer
 local character = Player.Character or Player.CharacterAdded:Wait()
