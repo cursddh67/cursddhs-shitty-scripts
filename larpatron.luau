@@ -1,4 +1,5 @@
 --stuffy
+--ill add r6 support someday
 local cloneref = cloneref or getgenv().cloneref
 local players = cloneref(game:GetService("Players"))
 local Player = players.LocalPlayer
@@ -7,8 +8,12 @@ local humanoid = character:WaitForChild("Humanoid")
 local rootPart = character:WaitForChild("HumanoidRootPart")
 local Lighting = cloneref(game:GetService("Lighting"))
 local RunService = cloneref(game:GetService("RunService"))
+local sound1 = Instance.new("Sound")
+local sound2 = Instance.new("Sound")    
+local sound3 = Instance.new("Sound")
+local sound4 = Instance.new("Sound")
 local soundservice = cloneref(game:GetService("SoundService"))
-local contentProvider = game:GetService("ContentProvider")
+local contentProvider = cloneref(game:GetService("ContentProvider"))
 local current = 1
 local colorCorrection = Instance.new("ColorCorrectionEffect")
 local head = character:WaitForChild("Head")
@@ -92,7 +97,7 @@ colorCorrection.Saturation = -1
 colorCorrection.Contrast = 0.5
 colorCorrection.Brightness = -0.2
 
-if isR6 then
+if humanoid.RigType == Enum.HumanoidRigType.R6 then
     local leftArm = character:WaitForChild("Left Arm")
     local rightArm = character:WaitForChild("Right Arm")
     
@@ -125,16 +130,34 @@ local emotes = {
 }
 
 
+local function shuffleEmotes()
+    for i = #emotes, 2, -1 do
+        local j = math.random(1, i)
+        emotes[i], emotes[j] = emotes[j], emotes[i]
+    end
+end
+
+local currentIndex = 0
+
 ui.button.MouseButton1Click:Connect(function()
     local animate = character:FindFirstChild("Animate")
-    if animate then 
-        animate.Disabled = true 
+    if animate then animate.Disabled = false end
+
+    task.wait()
+
+    currentIndex = currentIndex + 1
+    if currentIndex > #emotes then
+        currentIndex = 1
+        shuffleEmotes() -- reshuffle when all have been played
     end
-    local randomEmote = emotes[math.random(1, #emotes)]
+
+    local randomEmote = emotes[currentIndex]
+
     local track = humanoid:PlayEmoteAndGetAnimTrackById(randomEmote)
     if track and typeof(track) ~= "boolean" then
         track:AdjustSpeed(2)
         track.Priority = Enum.AnimationPriority.Action4
     end
-    end
 end)
+
+shuffleEmotes()
