@@ -125,9 +125,15 @@ local emotes = {
 
 
 ui.button.MouseButton1Click:Connect(function()
-    local randomemote = emotes[math.random(1, #emotes)]
-    local track = humanoid:PlayEmoteAndGetAnimTrackById(randomemote)
+    local animate = character:FindFirstChild("Animate")
+    if animate then 
+        animate.Disabled = true 
+    end
+    local randomEmote = emotes[math.random(1, #emotes)]
+    local track = humanoid:PlayEmoteAndGetAnimTrackById(randomEmote)
     if track and typeof(track) ~= "boolean" then
-        track:AdjustSpeed(0.65)
+        track:AdjustSpeed(2)
+        track.Priority = Enum.AnimationPriority.Action4
+    end
     end
 end)
