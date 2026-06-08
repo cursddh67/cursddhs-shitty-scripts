@@ -35,3 +35,4 @@ end
 Pla.PlayerAdded:Connect(function(otherpl)
     hookpl(otherpl)
 end)
+print("loaded :v v2")
