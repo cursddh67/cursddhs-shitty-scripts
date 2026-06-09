@@ -8,31 +8,16 @@ end
 local Pla = cloneref(game:GetService("Players"))
 local p = Pla.LocalPlayer
 
-local function hookpl(otherpl) --hookfunction() doesnt work smhw :<
-    local function onCharacter(char)
-        local humanoid = char:WaitForChild("Humanoid")
-        humanoid.Died:Connect(function()
-            local tag = humanoid:FindFirstChild("creator")
-            if tag and tag.Value == p then
-                print("you killed: " .. otherpl.Name)
-            end
-        end)
-    end
-
-    otherpl.CharacterAdded:Connect(onCharacter)
-    if otherpl.Character then
-        onCharacter(otherpl.Character)
-    end
+local function onCharacterAdded(char)
+    local humanoid = char:WaitForChild("Humanoid")
+    humanoid.Died:Connect(function()
+        local tag = humanoid:FindFirstChild("creator")
+        if tag and tag.Value and tag.Value ~= p then
+            print("you were killed by: " .. tag.Value.Name)
+        end
+    end)
 end
 
-for _, otherpl in ipairs(Pla:GetPlayers()) do
-    if otherpl ~= p then
-        hookpl(otherpl)
-    end
-end
-
---for new players
-Pla.PlayerAdded:Connect(function(otherpl)
-    hookpl(otherpl)
-end)
-print("loaded :v v2")
+p.CharacterAdded:Connect(onCharacterAdded)
+if p.Character then onCharacterAdded(p.Character) end
+print("loaded")
