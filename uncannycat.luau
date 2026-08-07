@@ -122,8 +122,8 @@ hitbox.Touched:Connect(function(hit)
         img.Visible = false
         local hum = c:WaitForChild("Humanoid")
         hum:ChangeState(Enum.HumanoidStateType.Physics)
-        hrp.AssemblyLinearVelocity = Vector3.new(math.random(-80, 80),80,math.random(-80, 80))
-        hrp.AssemblyAngularVelocity = Vector3.new(math.random(-25, 25),math.random(-25, 25),math.random(-25, 25)
+        hrp.AssemblyLinearVelocity = Vector3.new(math.random(-676, 676),67,math.random(-676, 676))
+        hrp.AssemblyAngularVelocity = Vector3.new(math.random(-67, 67),math.random(-67, 67),math.random(-67, 67))
         task.wait(5)
         p:Kick("dont let the cat catch you")
     end
