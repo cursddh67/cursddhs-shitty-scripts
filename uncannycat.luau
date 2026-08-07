@@ -124,8 +124,8 @@ hitbox.Touched:Connect(function(hit)
         local hum = c:WaitForChild("Humanoid")
         hum:ChangeState(Enum.HumanoidStateType.Physics)
         hrp.AssemblyLinearVelocity = Vector3.new(math.random(-80, 80),80,math.random(-80, 80))
-        hrp.AssemblyAngularVelocity = Vector3.new(math.random(-25, 25),math.random(-25, 25),math.random(-25, 25))
-
+        hrp.AssemblyAngularVelocity = Vector3.new(math.random(-25, 25),math.random(-25, 25),math.random(-25, 25)
+        task.wait(5)
         p:Kick("dont let the cat catch you")
     end
 end)
