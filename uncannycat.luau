@@ -9,7 +9,6 @@ local hrp = c:WaitForChild("HumanoidRootPart")
 local evilcat = Instance.new("Part")
 local hitbox = Instance.new("Part")
 local sservice = cloneref(game:GetService("SoundService"))
-local humanoid = c:WaitForChild("Humanoid")
 
 if not isfile("scream2") then
     writefile("scream2", game:HttpGet("https://github.com/cursddh67/cursddhs-shitty-scripts/raw/refs/heads/main/assets/Wilhelm%20Scream%20-%20Sound%20Effect%20(HD).mp3"))
