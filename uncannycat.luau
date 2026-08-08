@@ -93,20 +93,20 @@ for _, face in ipairs({Enum.NormalId.Front, Enum.NormalId.Back}) do
 end
 
 local vt = 12
-
+local acce = 0.1
 rservice.Heartbeat:Connect(function(dt)
     if not c.Parent then
         c = p.Character or p.CharacterAdded:Wait()
         hrp = c:WaitForChild("HumanoidRootPart")
     end
+    vt += acce * dt
     local dir = hrp.Position - evilcat.Position
     local dis = dir.Magnitude
     if dis > 0 then
         local step = math.min(vt * dt, dis)
         evilcat.Position += dir.Unit * step
         hitbox.CFrame = evilcat.CFrame
-    
-        evilcat.CFrame = CFrame.lookAt(evilcat.Position, cam.CFrame.Position)
+        evilcat.CFrame = CFrame.lookAt(evilcat.Position,cam.CFrame.Position)
     end
 end)
 
