@@ -2,7 +2,7 @@
 local cloneref = cloneref or getgenv().cloneref --cloneref smhw doesnt work with loadstrings 
 
 if not cloneref then
-    error("cloneref is not available in this env or doesnt work, rip")
+    error("cloneref is not available in this env or doesnt work, rip") --i hate skids so this is just useful for me :3
 end
 
 local Pla = cloneref(game:GetService("Players"))
