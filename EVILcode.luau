@@ -1,4 +1,3 @@
---WE LOVE CHATGPT CODE YAYAYAYGSFAFASFGYFSA
 local p = game:GetService("Players").LocalPlayer
 local mick = Instance.new("ImageLabel")
 local egg = Instance.new("ScreenGui")
